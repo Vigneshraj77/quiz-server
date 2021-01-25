@@ -3,7 +3,7 @@ const mongoose = require("mongoose");
 const bodyParser = require("body-parser");
 const passport = require("passport");
 const path = require("path");
-
+const cors = require('cors');
 const users = require("./routes/api/users");
 
 const app = express();
@@ -14,7 +14,7 @@ app.use(
       extended: false
     })
   );
-
+app.use(cors());
 app.use(bodyParser.json());
 
 const dbURL =  "mongodb+srv://User1:quizpass@cluster0.kx5xe.mongodb.net/quiz-login?retryWrites=true&w=majority";
