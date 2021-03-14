@@ -7,7 +7,7 @@ const keys = require("../../config/keys");
 // Load input validat
 // Load User model
 const User = require("../../models/UserSchema");
-
+const Host = require("../../models/HostSchema");
 // @route POST api/users/register
 // @desc Register user
 // @access Public
@@ -41,7 +41,26 @@ router.post("/register", (req, res) => {
     });
 
 });
+router.post("/hostquestion",(req,res)=>{
+const roomname = req.body.roomname;
+const roomcode = req.body.roomcode;
+const questions = req.body.questions;
+const options = req.body.options;
+const correctanswers = req.body.correctanswers;
+const hoster = req.body.host;
+const NewHost = new Host({
+    roomcode: roomcode,
+    roomname: roomname,
+    questions:questions,
+    options : options,
+    correctanswers : correctanswers,
+    host : hoster,
+});
+NewHost.save()
+.then(user => res.json(user))
+.catch(err => console.log(err));
 
+ });
 // @route POST api/users/login
 // @desc Login user and return JWT token
 // @access Public
