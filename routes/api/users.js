@@ -57,7 +57,7 @@ const NewHost = new Host({
     host : hoster,
 });
 NewHost.save()
-.then(user => res.json(user))
+.then(roomcode => res.json(roomcode))
 .catch(err => console.log(err));
 
  });
