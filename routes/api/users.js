@@ -8,6 +8,7 @@ const keys = require("../../config/keys");
 // Load User model
 const User = require("../../models/UserSchema");
 const Host = require("../../models/HostSchema");
+const Room = require("../../models/RoomSchema");
 // @route POST api/users/register
 // @desc Register user
 // @access Public
@@ -41,6 +42,34 @@ router.post("/register", (req, res) => {
     });
 
 });
+
+router.post("/roominfo",(req,res)=>{
+    const roomname = req.body.roomname;
+    const roomcode = req.body.roomcode;
+    const host = req.body.host;
+    const attend = req.body.attend;
+    const NewRoom= new Room({
+        roomcode: roomcode,
+        roomname: roomname,
+        host : host,
+        attendees : [],
+        
+    }) 
+    NewRoom.save()
+    .then(roomcode => res.json(roomcode))
+    .catch(err => console.log(err));
+    
+     });
+router.get("/roomques",async (req,res)=>{
+const roomcode = req.body.roomcode;
+let questions = await Host.findOne({roomcode : roomcode});
+if(questions === null){
+    res.status(400).send("Error: No room found");
+}
+else{
+    res.status(200).send({success:true,questions});
+}
+});
 router.post("/hostquestion",(req,res)=>{
 const roomname = req.body.roomname;
 const roomcode = req.body.roomcode;
@@ -59,7 +88,6 @@ const NewHost = new Host({
 NewHost.save()
 .then(roomcode => res.json(roomcode))
 .catch(err => console.log(err));
-
  });
 // @route POST api/users/login
 // @desc Login user and return JWT token
