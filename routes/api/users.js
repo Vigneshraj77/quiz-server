@@ -60,11 +60,11 @@ router.post("/roominfo",(req,res)=>{
     .catch(err => console.log(err));
     
      });
-router.get("/roomques:roomcode",async (req,res)=>{
-const roomcode = req.params.roomcode;
-let questions = await Host.findOne({roomcode : Number(roomcode)});
+router.get("/roomques",async (req,res)=>{
+const roomcode =Number( req.query.roomcode);
+let questions = await Host.findOne({roomcode : roomcode});
 if(questions === null){
-    res.status(400).send("Error: No room found");
+    res.status(400).send("ERROR NO ROOM");
 }
 else{
     res.status(200).send({success:true,questions});
