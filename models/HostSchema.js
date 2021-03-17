@@ -26,6 +26,14 @@ const HostSchema = new Schema({
     host:{
       type: String,
       required:true
+    },
+    timer:{
+      type: Boolean,
+      required:true
+    },
+    timersec:{
+      type: Number,
+      required:false
     }
   });
   

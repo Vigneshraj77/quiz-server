@@ -77,6 +77,8 @@ const questions = req.body.questions;
 const options = req.body.options;
 const correctanswers = req.body.correctanswers;
 const hoster = req.body.host;
+const timer = req.body.timer;
+const timersec = req.body.timersec;
 const NewHost = new Host({
     roomcode: roomcode,
     roomname: roomname,
@@ -84,6 +86,8 @@ const NewHost = new Host({
     options : options,
     correctanswers : correctanswers,
     host : hoster,
+    timer : timer,
+    timer :timersec,
 });
 NewHost.save()
 .then(roomcode => res.json(roomcode))
