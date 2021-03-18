@@ -35,7 +35,7 @@ const HostSchema = new Schema({
       type: Number,
     },
     cutoff :{
-      type : Boolean,
+      type : Number,
       required : true
     },
     totallevel:{
