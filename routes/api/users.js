@@ -70,6 +70,17 @@ else{
     res.status(200).send({success:true,questions});
 }
 });
+router.get("/levelques",async (req,res)=>{
+    const roomcode =Number( req.query.roomcode);
+    const level = Number( req.query.level);
+    let questions = await Host.findOne({roomcode : roomcode , level : level});
+    if(questions === null){
+        res.status(400).send("ERROR NO ROOM");
+    }
+    else{
+        res.status(200).send({success:true,questions});
+    }
+    });
 router.post("/hostquestion",(req,res)=>{
 const roomname = req.body.roomname;
 const roomcode = req.body.roomcode;
