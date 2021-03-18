@@ -41,7 +41,7 @@ const HostSchema = new Schema({
     totallevel:{
       type:Number,
     },
-    total:{
+    level:{
       type:Number,
     }
   });
