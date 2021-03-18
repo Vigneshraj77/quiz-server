@@ -33,7 +33,16 @@ const HostSchema = new Schema({
     },
     timersec:{
       type: Number,
-      required:false
+    },
+    cutoff :{
+      type : Boolean,
+      required : true
+    },
+    totallevel:{
+      type:Number,
+    },
+    total:{
+      type:Number,
     }
   });
   

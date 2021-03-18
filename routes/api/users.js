@@ -79,6 +79,9 @@ const correctanswers = req.body.correctanswers;
 const hoster = req.body.host;
 const timer = req.body.timer;
 const timersec = req.body.timersec;
+const cutoff = req.body.cutoff;
+const totallevel = req.body.totallevel;
+const level = req.body.level;
 const NewHost = new Host({
     roomcode: roomcode,
     roomname: roomname,
@@ -87,7 +90,10 @@ const NewHost = new Host({
     correctanswers : correctanswers,
     host : hoster,
     timer : timer,
-    timer :timersec,
+    timersec :timersec,
+    cutoff : cutoff,
+    level : level,
+    totallevel : totallevel,
 });
 NewHost.save()
 .then(roomcode => res.json(roomcode))
